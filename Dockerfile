@@ -1,5 +1,6 @@
 FROM webhippie/alpine:latest
-MAINTAINER Thomas Boerger <thomas@webhippie.de>
+
+#ENV LC_ALL=en_GB.UTF-8
 
 VOLUME ["/var/lib/mysql", "/var/lib/backup"]
 
@@ -8,9 +9,10 @@ EXPOSE 3306
 WORKDIR /root
 CMD ["/bin/s6-svscan", "/etc/s6"]
 
-ENV CRON_ENABLED true
+ENV CRON_ENABLED false
 
-RUN apk update && \
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/main' >> /etc/apk/repositories && \
+  apk update && \
   mkdir -p \
     /var/lib/mysql && \
   groupadd \
@@ -24,8 +26,9 @@ RUN apk update && \
     -m \
     mysql && \
   apk add \
-    mariadb \
-    mariadb-client && \
+    mariadb-common='10.1.32-r0' \
+    mariadb='10.1.32-r0' \
+    mariadb-client='10.1.32-r0' && \
   rm -rf \
     /var/cache/apk/* \
     /etc/mysql/* \

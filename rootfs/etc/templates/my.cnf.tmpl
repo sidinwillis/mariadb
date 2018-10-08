@@ -32,6 +32,8 @@ binlog_format = {{ envString "BINLOG_FORMAT" }}
 
 server-id = {{ envString "SERVER_ID" }}
 
+default_storage_engine = InnoDB
+innodb_flush_method = {{ envString "INNODB_FLUSH_METHOD" }}
 innodb_data_home_dir = /var/lib/mysql
 innodb_data_file_path = {{ envString "INNODB_DATA_FILE_PATH" }}
 innodb_log_group_home_dir = /var/lib/mysql
@@ -42,8 +44,6 @@ innodb_flush_log_at_trx_commit = {{ envString "INNODB_FLUSH_LOG_AT_TRX_COMMIT" }
 innodb_lock_wait_timeout = {{ envString "INNODB_LOCK_WAIT_TIMEOUT" }}
 innodb_use_native_aio = {{ envString "INNODB_USE_NATIVE_AIO" }}
 
-innodb_large_prefix = {{ envString "INNODB_LARGE_PREFIX" }}
-innodb_file_format = {{ envString "INNODB_FILE_FORMAT" }}
 innodb_file_per_table = {{ envString "INNODB_FILE_PER_TABLE" }}
 
 [mysqldump]
