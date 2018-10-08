@@ -1,4 +1,5 @@
 FROM webhippie/alpine:latest
+MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
 #ENV LC_ALL=en_GB.UTF-8
 
